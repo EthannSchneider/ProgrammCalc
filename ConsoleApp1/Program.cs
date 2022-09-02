@@ -1,72 +1,84 @@
 ﻿using System.Runtime.InteropServices;
 using System.IO;
+using Math;
 
 namespace Program
 {
     public class Program
     {
-        #region private attribute
-        private int result;
-        private int op1;
-        private int op2;
-        private char oper;
-        #endregion private attribute
-
         #region private methods
-        private void Main(string args)
+        private static void Main(string[] args)
         {
+            int result;
+            int op1;
+            int op2;
+            char oper;
             while (true)
             {
-                DisplayMessage("Nombre 1: ");
-                AskUserForIntegerInput();
+                op1 = AskUserForIntegerInput("Nombre 1: ");
+                oper = AskUserForCharInput("Operateur: ");
+                op2 = AskUserForIntegerInput("Nombre 2: ");
+
+                result = PerformOperation(op1, oper, op2);
+
+                DisplayResult(op1, oper, op2, result);
             }
         }
-        private char AskUserForCharInput(string question)
-        {
-            Console.Write(question);
-            result = Console.Read();
-            
-        }
-        private int AskUserForIntegerInput(string question)
+        private static char AskUserForCharInput(string question)
         {
             while (true)
             {
                 Console.Write(question);
                 string result = Console.ReadLine();
-                if (Int32.TryParse(result))
+                char OutChar;
+                char[] operateur = { '*', '/', '-', '+' };
+                if (Char.TryParse(result,out OutChar) && operateur.Contains(OutChar))
                 {
-                    return Int32.Parse(result);
+                    return OutChar;
                 }
             }
         }
-        private void DisplayResult(int op1, char oper, int op2, int result)
+        private static int AskUserForIntegerInput(string question)
         {
-            throw new NotImplementedException();
+            while (true)
+            {
+                Console.Write(question);
+                string result = Console.ReadLine();
+                int OutInt;
+                if (Int32.TryParse(result, out OutInt))
+                {
+                    return OutInt;
+                }
+            }
         }
-        private void DisplayMessage(string message)
+        private static void DisplayResult(int op1, char oper, int op2, int result)
+        {
+            DisplayMessage($"{op1.ToString()} {oper.ToString()} {op2.ToString()} = {result.ToString()}");
+        }
+        private static void DisplayMessage(string message)
         {
             Console.WriteLine(message);
         }
-        private int Add(int op1, int op2)
+        private static int PerformOperation(int op1, char oper, int op2)
         {
-            throw new NotImplementedException();
-        }
-        private int Substract(int op1, int op2)
-        {
-            throw new NotImplementedException();
-        }
-        private int Multiply(int op1, int op2)
-        {
-            throw new NotImplementedException();
-        }
-        private int Divide(int op1, int op2)
-        {
-            throw new NotImplementedException();
-        }
-        private Double Eval(String expression)
-        {
-            System.Data.DataTable table = new System.Data.DataTable();
-            return Convert.ToDouble(table.Compute(expression, String.Empty));
+            switch (oper)
+            {
+                case '+':
+                    return MathsBasicOperation.Add(op1, op2);
+                    break;
+                case '-':
+                    return MathsBasicOperation.Substract(op1, op2);
+                    break;
+                case '*':
+                    return MathsBasicOperation.Multiply(op1, op2);
+                    break;
+                case '/':
+                    return MathsBasicOperation.Divide(op1, op2);
+                    break;
+                default:
+                    return 0;
+                    break;
+            }
         }
         #endregion private methods
     }
