@@ -7,6 +7,11 @@ namespace Program
     public class Program
     {
         #region private methods
+
+        /// <summary>
+        /// Main method
+        /// </summary>
+        /// <param name="args"></param>
         private static void Main(string[] args)
         {
             int result;
@@ -24,6 +29,14 @@ namespace Program
                 DisplayResult(op1, oper, op2, result);
             }
         }
+
+        /// <summary>
+        /// ask user a char input 
+        /// </summary>
+        /// <param name="question">
+        /// the question to ask to the user
+        /// </param>
+        /// <returns>char</returns>
         private static char AskUserForCharInput(string question)
         {
             while (true)
@@ -38,6 +51,11 @@ namespace Program
                 }
             }
         }
+        /// <summary>
+        /// ask user a int input
+        /// </summary>
+        /// <param name="question"></param>
+        /// <returns>int</returns>
         private static int AskUserForIntegerInput(string question)
         {
             while (true)
@@ -51,14 +69,32 @@ namespace Program
                 }
             }
         }
-        private static void DisplayResult(int op1, char oper, int op2, int result)
+        /// <summary>
+        /// Display the result of the calculation
+        /// </summary>
+        /// <param name="op1">Number 1</param>
+        /// <param name="oper">operator (+, -, *, /)</param>
+        /// <param name="op2">Number 2</param>
+        /// <param name="res">resultat</param>
+        private static void DisplayResult(int op1, char oper, int op2, int res)
         {
-            DisplayMessage($"{op1.ToString()} {oper.ToString()} {op2.ToString()} = {result.ToString()}");
+            DisplayMessage($"{op1.ToString()} {oper.ToString()} {op2.ToString()} = {res.ToString()}");
         }
+        /// <summary>
+        /// to display a message
+        /// </summary>
+        /// <param name="message">Message to display</param>
         private static void DisplayMessage(string message)
         {
             Console.WriteLine(message);
         }
+        /// <summary>
+        /// to perform a operation
+        /// </summary>
+        /// <param name="op1">Number 1</param>
+        /// <param name="oper">Operator (+,-,*,/)</param>
+        /// <param name="op2">Number 2</param>
+        /// <returns></returns>
         private static int PerformOperation(int op1, char oper, int op2)
         {
             switch (oper)
