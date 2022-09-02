@@ -41,6 +41,7 @@ namespace Program
         {
             while (true)
             {
+                //TODO Use appropriate method instead of duplicate code Console.Write (DRY)
                 Console.Write(question);
                 string result = Console.ReadLine();
                 char OutChar;
@@ -60,6 +61,7 @@ namespace Program
         {
             while (true)
             {
+                //TODO Use appropriate method instead of duplicate code Console.Write (DRY)
                 Console.Write(question);
                 string result = Console.ReadLine();
                 int OutInt;
@@ -97,6 +99,7 @@ namespace Program
         /// <returns></returns>
         private static int PerformOperation(int op1, char oper, int op2)
         {
+            //TODO Remove unreacheable code
             switch (oper)
             {
                 case '+':

@@ -2,6 +2,7 @@
 
 namespace Math
 {
+    //TODO This class must be static
     public class MathsBasicOperation
     {
         /// <summary>
@@ -42,6 +43,7 @@ namespace Math
         /// <returns></returns>
         public static int Divide(int op1, int op2)
         {
+            //TODO Division by zero
             return op1 / op2;
         }
     }
