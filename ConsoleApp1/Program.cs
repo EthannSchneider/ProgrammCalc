@@ -41,8 +41,7 @@ namespace Program
         {
             while (true)
             {
-                //TODO Use appropriate method instead of duplicate code Console.Write (DRY)
-                Console.Write(question);
+                DisplayMessage(question,false);
                 string result = Console.ReadLine();
                 char OutChar;
                 char[] operateur = { '*', '/', '-', '+' };
@@ -61,8 +60,7 @@ namespace Program
         {
             while (true)
             {
-                //TODO Use appropriate method instead of duplicate code Console.Write (DRY)
-                Console.Write(question);
+                DisplayMessage(question, false);
                 string result = Console.ReadLine();
                 int OutInt;
                 if (Int32.TryParse(result, out OutInt))
@@ -86,9 +84,16 @@ namespace Program
         /// to display a message
         /// </summary>
         /// <param name="message">Message to display</param>
-        private static void DisplayMessage(string message)
+        private static void DisplayMessage(string message,bool backToLine=true)
         {
-            Console.WriteLine(message);
+            if (backToLine)
+            {
+                Console.WriteLine(message);
+            }
+            else
+            {
+                Console.Write(message);
+            }
         }
         /// <summary>
         /// to perform a operation
@@ -99,25 +104,26 @@ namespace Program
         /// <returns></returns>
         private static int PerformOperation(int op1, char oper, int op2)
         {
-            //TODO Remove unreacheable code
+            int result;
             switch (oper)
             {
                 case '+':
-                    return MathsBasicOperation.Add(op1, op2);
+                    result = MathsBasicOperation.Add(op1, op2);
                     break;
                 case '-':
-                    return MathsBasicOperation.Substract(op1, op2);
+                    result = MathsBasicOperation.Substract(op1, op2);
                     break;
                 case '*':
-                    return MathsBasicOperation.Multiply(op1, op2);
+                    result = MathsBasicOperation.Multiply(op1, op2);
                     break;
                 case '/':
-                    return MathsBasicOperation.Divide(op1, op2);
+                    result = MathsBasicOperation.Divide(op1, op2);
                     break;
                 default:
-                    return 0;
+                    throw new Exception("Operateur non reconnu");
                     break;
             }
+            return result;
         }
         #endregion private methods
     }

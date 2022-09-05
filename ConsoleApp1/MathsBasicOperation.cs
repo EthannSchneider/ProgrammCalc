@@ -2,8 +2,7 @@
 
 namespace Math
 {
-    //TODO This class must be static
-    public class MathsBasicOperation
+    public static class MathsBasicOperation
     {
         /// <summary>
         /// Add method to add two numbers
@@ -43,8 +42,14 @@ namespace Math
         /// <returns></returns>
         public static int Divide(int op1, int op2)
         {
-            //TODO Division by zero
-            return op1 / op2;
+            if (op1 != 0 || op2 != 0)
+            {
+                return op1 / op2;
+            }
+            else
+            {
+                throw new Exception("Cannot divide by 0");
+            }
         }
     }
 }
